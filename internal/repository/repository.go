@@ -4,8 +4,8 @@ import (
 	"database/sql"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/trace"
-	"gorm.io/gorm"
 	"go_project/internal/model"
+	"gorm.io/gorm"
 )
 
 var (
@@ -21,17 +21,17 @@ type Repository interface {
 
 // repository mysql struct
 type repository struct {
-	orm       *gorm.DB
-	db        *sql.DB
-	tracer    trace.Tracer
+	orm    *gorm.DB
+	db     *sql.DB
+	tracer trace.Tracer
 }
 
 // New a repository and return
 func New(db *gorm.DB, sqlDb *sql.DB) Repository {
 	return &repository{
-		orm:       db,
-		db:       sqlDb,
-		tracer:    otel.Tracer("repository"),
+		orm:    db,
+		db:     sqlDb,
+		tracer: otel.Tracer("repository"),
 	}
 }
 
